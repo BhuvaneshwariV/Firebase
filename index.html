@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FireBase_form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+      <div class="box">
+        <div class="form">
+            <h2>Login Form</h2>
+            <form>
+                <div class="inputbox">
+                    <input type="text" value="" id="username" required>
+                    <span>username</span>
+                </div>
+                <div class="inputbox">
+                    <input type="email" value="" id="email" required>
+                    <span>E-mail</span>
+                </div>
+                <div class="inputbox">
+                    <input type="text" value="" id="Phone" required>
+                    <span>Phone number</span>
+                </div>
+                <input type="submit" value="submit" class="sub" id="submit">
+            </form>
+        </div>
+      </div>
+   
+
+<script type="module">
+        
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      import { getDatabase, ref, set, get, child} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+ 
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAVyL1aawDMmB9XrglLodZ3k_Q136oI538",
+        authDomain: "fir-1ba2f.firebaseapp.com",
+        projectId: "fir-1ba2f",
+        storageBucket: "fir-1ba2f.firebasestorage.app",
+        messagingSenderId: "1014236694374",
+        appId: "1:1014236694374:web:6c4688d5e3ed7f9440eaa7"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    //get ref to database services
+    const db = getDatabase(app);
+
+        document.getElementById("submit").addEventListener('click', function(e){
+            e.preventDefault();
+        set(ref(db, 'user/' +document.getElementById("username").value),
+        {
+
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            PhoneNumber: document.getElementById("Phone").value
+
+        });
+            alert("Login Successfully !");
+        });
+</script>
+    
+</body>
+</html>
